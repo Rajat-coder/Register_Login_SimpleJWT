@@ -1,10 +1,10 @@
 from rest_framework import serializers
-from myapp.models import User
+from django.contrib.auth.models import User
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model=User
-        fields=("id","name","email","password")
+        fields=("id","username","email","password")
         # for hiding password to be serialize in postman
         extra_kwargs={
             'password': {'write_only':True}
