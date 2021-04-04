@@ -35,6 +35,7 @@ class LoginView(APIView):
         output_status=False
         output_detail="Failed"
         res_status=status.HTTP_400_BAD_REQUEST
+        data=[]
         email=request.data.get("email")
         password=request.data.get("password")
         if email:
@@ -45,6 +46,7 @@ class LoginView(APIView):
                     output_status=True
                     output_detail="Success"
                     res_status=status.HTTP_200_OK
+                    data.append(get_tokens_for_user(model))
                 else:
                     output_detail="Wrong password"
             else:
@@ -54,6 +56,7 @@ class LoginView(APIView):
         context={
             "status":output_status,
             "detail":output_detail,
+            "data":data
         }
         return Response(context,status=res_status)
 
