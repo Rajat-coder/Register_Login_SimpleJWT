@@ -4,11 +4,12 @@ from myapp.serializers import *
 from rest_framework import status
 from rest_framework.response import Response
 from myapp.models import *
-
+from myapp.permissions import *
 # Create your views here.
 
 
 class Register(APIView):
+    permission_classes=(ValidateApiKey,)
     def post(self,request):
         output_status=False
         output_detail="Failed"
