@@ -5,7 +5,7 @@ from django.conf import settings
 def is_valid_api_key(api_key = None, data_dict = None):
     if data_dict:
         api_key = data_dict.get('api_key', None)
-    if api_key and api_key in settings.API_KEY:
+    if api_key and api_key in settings.BACKEND_API_KEY:
         return True
     return False
 

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 import os
 from datetime import timedelta
 
@@ -148,7 +149,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 #api key
-API_KEY = "123"
+BACKEND_API_KEY = [
+    key
+    for key in config('BACKEND_API_KEY', default='R786').split(',')
+    if key
+]
 
 
 # AUTH_USER_MODEL='myapp.User'
